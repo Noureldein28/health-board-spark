@@ -1,18 +1,18 @@
 import React from 'react';
 
-interface Column {
+interface Column<T = Record<string, unknown>> {
   header: string;
   accessor: string;
-  render?: (value: any, row: any) => React.ReactNode;
+  render?: (value: unknown, row: T) => React.ReactNode;
 }
 
-interface DataTableProps {
-  columns: Column[];
-  data: any[];
+interface DataTableProps<T = Record<string, unknown>> {
+  columns: Column<T>[];
+  data: T[];
   className?: string;
 }
 
-export const DataTable: React.FC<DataTableProps> = ({ columns, data, className = '' }) => {
+export const DataTable = <T extends Record<string, unknown>>({ columns, data, className = '' }: DataTableProps<T>) => {
   return (
     <div className={`bg-card rounded-lg overflow-hidden shadow-sm ${className}`}>
       <table className="w-full">
@@ -38,7 +38,7 @@ export const DataTable: React.FC<DataTableProps> = ({ columns, data, className =
                 <td key={colIndex} className="px-6 py-4 whitespace-nowrap text-sm">
                   {column.render
                     ? column.render(row[column.accessor], row)
-                    : row[column.accessor]
+                    : String(row[column.accessor])
                   }
                 </td>
               ))}

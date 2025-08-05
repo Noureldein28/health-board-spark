@@ -1,6 +1,7 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Calendar, Users, MessageCircle, LogOut, Plus } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface SidebarProps {
   collapsed: boolean;
@@ -20,12 +21,10 @@ const navItems: NavItem[] = [
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({ collapsed }) => {
-  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   const handleLogout = () => {
-    // Add logout logic here - call your .NET backend
-    console.log('Logout clicked');
-    navigate('/login');
+    logout();
   };
 
   return (
@@ -37,10 +36,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed }) => {
         <div className="flex items-center gap-2">
           <Plus className="w-6 h-6 text-sidebar-foreground" />
           {!collapsed && (
-            <span className="text-lg font-semibold">EliteCare</span>
+            <span className="text-lg font-semibold">Health Board</span>
           )}
         </div>
       </div>
+
+      {/* User Info */}
+      {!collapsed && user && (
+        <div className="p-4 border-b border-sidebar-border">
+          <div className="text-sm">
+            <p className="font-medium text-sidebar-foreground">{user.fullName}</p>
+            <p className="text-sidebar-foreground/70">@{user.username}</p>
+          </div>
+        </div>
+      )}
 
       {/* Navigation */}
       <nav className="flex-1 p-4">
