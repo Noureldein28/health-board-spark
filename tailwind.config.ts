@@ -52,6 +52,27 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Medical Theme Colors
+				medical: {
+					blue: 'hsl(var(--medical-blue))',
+					'blue-light': 'hsl(var(--medical-blue-light))',
+					'blue-dark': 'hsl(var(--medical-blue-dark))'
+				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))'
+				},
+				warning: {
+					DEFAULT: 'hsl(var(--warning))',
+					foreground: 'hsl(var(--warning-foreground))'
+				},
+				// Table colors
+				table: {
+					header: 'hsl(var(--table-header))',
+					'header-foreground': 'hsl(var(--table-header-foreground))',
+					row: 'hsl(var(--table-row))',
+					'row-hover': 'hsl(var(--table-row-hover))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
